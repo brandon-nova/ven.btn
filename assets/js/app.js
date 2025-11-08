@@ -89,6 +89,24 @@
     });
   }
 
+  // Ensure logo link always goes to root
+  function initLogoLink() {
+    const logoLink = document.querySelector('.header__logo');
+    
+    if (logoLink) {
+      // Always set href to root explicitly using window.location.origin for absolute path
+      const rootUrl = window.location.origin + '/';
+      logoLink.setAttribute('href', rootUrl);
+      
+      // Add click handler to ensure consistent navigation to root
+      logoLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Always navigate to root, clearing any path
+        window.location.href = rootUrl;
+      });
+    }
+  }
+
   // Initialize mobile menu toggle
   function initMobileMenu() {
     const toggle = document.querySelector('.header__nav-toggle');
@@ -140,6 +158,7 @@
     initSmoothScroll();
     initExternalLinks();
     initNavigation();
+    initLogoLink();
     initMobileMenu();
   }
 
