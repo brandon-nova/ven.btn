@@ -191,6 +191,43 @@
   box-shadow: 0 4px 12px rgba(225, 54, 97, 0.3);
 }
 
+/* Email Button */
+.btn--email {
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}
+
+.btn__text {
+  transition: all var(--transition-base);
+}
+
+.btn__icon {
+  font-size: 1.2em;
+  transition: transform var(--transition-base);
+}
+
+.btn--email:hover .btn__icon,
+.btn--email:focus .btn__icon {
+  transform: scale(1.1);
+}
+
+.btn--email.btn--copied {
+  background-color: var(--accent);
+  color: var(--white);
+  border-color: var(--accent);
+}
+
+.btn--email.btn--copied:hover {
+  background-color: var(--accent);
+  opacity: 0.9;
+}
+
+/* Email button in bullet list context */
+.bullet-list__items .btn--email {
+  padding-left: var(--space-md);
+  margin-left: 0;
+}
+
 /* Bullet List (for Work with Me page) */
 .bullet-list {
   list-style: none;

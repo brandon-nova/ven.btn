@@ -247,12 +247,13 @@
 
 .section--all-tiles {
   padding: 0;
-  margin-top: -2px;
-  min-height: calc(100vh - var(--header-height) - 4px);
+  margin: 0;
+  min-height: calc(100vh - var(--header-height));
   display: flex;
   flex-direction: column;
   width: 100%;
   overflow: hidden;
+  align-items: stretch;
 }
 
 .section--all-tiles .container {
@@ -264,13 +265,15 @@
   max-width: 100% !important;
   padding: 0 var(--space-sm);
   box-sizing: border-box;
-  margin: 0 auto;
+  margin: 0;
+  align-items: stretch;
+  justify-content: flex-start;
 }
 
 .section--all-tiles .grid {
-  flex: 1;
-  height: 100%;
+  flex: 0 0 auto;
   width: 100%;
+  align-self: flex-start;
 }
 
 /* Force 3x3 layout on ALL screen sizes - override any other grid rules */
@@ -424,6 +427,11 @@
 .page-content__inner {
   max-width: 800px;
   margin: 0 auto;
+}
+
+/* Wider content for pages with iframe containers (like ideas page) */
+.page-content__inner:has(.iframe-container) {
+  max-width: 90vw;
 }
 
 /* Reduce section padding for pages with page-content (like ideas page) */

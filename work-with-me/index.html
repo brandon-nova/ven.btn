@@ -67,26 +67,33 @@
               <section class="bullet-list__section">
                 <h2 class="bullet-list__title">What I Want in a Cofounder</h2>
                 <ul class="bullet-list__items">
-                  <li class="bullet-list__item">Passion for building products that solve real problems</li>
-                  <li class="bullet-list__item">Strong technical or product skills (or both)</li>
-                  <li class="bullet-list__item">Commitment to long-term vision and execution</li>
-                  <li class="bullet-list__item">Clear communication and collaboration style</li>
-                  <li class="bullet-list__item">Entrepreneurial mindset with bias for action</li>
-                  <li class="bullet-list__item">Alignment on values and work ethic</li>
+                  <li class="bullet-list__item">Wanting to deliver value and solve a problem you care about</li>
+                  <li class="bullet-list__item">Willing to acknowledge and overcome failure</li> 
+                  <li class="bullet-list__item">You believe you can make a difference</li>
                 </ul>
               </section>
 
               <!-- What I Offer -->
-              <section class="bullet-list__section">
+              <section class="bullet-list__section"> 
                 <h2 class="bullet-list__title">What I Offer</h2>
                 <ul class="bullet-list__items">
-                  <li class="bullet-list__item">Full-stack development expertise</li>
-                  <li class="bullet-list__item">Product vision and design thinking</li>
-                  <li class="bullet-list__item">Experience building and launching multiple products</li>
-                  <li class="bullet-list__item">Dedication to building user-focused solutions</li>
-                  <li class="bullet-list__item">Long-term commitment to the venture</li>
+                  <li class="bullet-list__item">Creativity and vision</li>
+                  <li class="bullet-list__item">Full-stack development </li>
+                  <li class="bullet-list__item">Willingness to learn, adapt, and grow</li>
+                  <li class="bullet-list__item">Dedication to listen to you (and users)</li>
+                  <li class="bullet-list__item">Willingness to fail, struggle, and overcome</li>
                   <li class="bullet-list__item">Collaborative approach to problem-solving</li>
                 </ul>
+              </section>
+
+              <!-- Contact -->
+              <section class="bullet-list__section">
+                <h2 class="bullet-list__title">Think we're a fit?</h2>
+                <div class="bullet-list__items">
+                  <button class="btn btn--email" id="copy-email-btn" aria-label="Copy email to clipboard">
+                    <span class="btn__text">Copy Email</span>
+                  </button>
+                </div>
               </section>
             </div>
           </div>
@@ -112,6 +119,58 @@
   <!-- JavaScript -->
   <script src="../assets/js/app.js" defer></script>
   <script src="../assets/js/animations.js" defer></script>
+  <script>
+    // Copy email to clipboard
+    (function() {
+      const emailBtn = document.getElementById('copy-email-btn');
+      const email = 'brandon.t.nova@gmail.com';
+      
+      if (emailBtn) {
+        emailBtn.addEventListener('click', async function() {
+          try {
+            await navigator.clipboard.writeText(email);
+            
+            // Update button text to show success
+            const btnText = this.querySelector('.btn__text');
+            const originalText = btnText.textContent;
+            btnText.textContent = 'Copied!';
+            this.classList.add('btn--copied');
+            
+            // Reset after 2 seconds
+            setTimeout(() => {
+              btnText.textContent = originalText;
+              this.classList.remove('btn--copied');
+            }, 2000);
+          } catch (err) {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = email;
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+              document.execCommand('copy');
+              const btnText = this.querySelector('.btn__text');
+              const originalText = btnText.textContent;
+              btnText.textContent = 'Copied!';
+              this.classList.add('btn--copied');
+              
+              setTimeout(() => {
+                btnText.textContent = originalText;
+                this.classList.remove('btn--copied');
+              }, 2000);
+            } catch (fallbackErr) {
+              alert('Failed to copy email. Please copy manually: ' + email);
+            }
+            
+            document.body.removeChild(textArea);
+          }
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
 
