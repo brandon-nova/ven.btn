@@ -1,0 +1,465 @@
+/* ========================================
+   LAYOUT - Header, Footer, Grid, Containers
+   ======================================== */
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  box-sizing: border-box;
+}
+
+/* Override container max-width for all-tiles section */
+.section--all-tiles > .container {
+  max-width: 100% !important;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 0 var(--space-sm);
+  }
+}
+
+/* Header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--bg);
+  backdrop-filter: blur(10px);
+  background-color: rgba(253, 251, 212, 0.95);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--header-height);
+  padding: var(--space-sm) var(--space-md);
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+@media (max-width: 767px) {
+  .header__inner {
+    padding: var(--space-xs) var(--space-sm);
+    min-height: var(--header-height);
+    height: auto;
+  }
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--header-text);
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+  letter-spacing: -0.01em;
+}
+
+.header__logo:hover {
+  opacity: 0.8;
+}
+
+.header__logo img {
+  height: 42px;
+  width: auto;
+  display: block;
+}
+
+.header__logo-text {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--header-text);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.header__nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.header__nav-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + var(--space-xs));
+  right: 0;
+  background-color: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: var(--space-sm);
+  min-width: 180px;
+  box-shadow: 0 4px 12px var(--shadow);
+  z-index: 1000;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.header__nav-menu.active {
+  display: flex;
+}
+
+.header__nav-toggle {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  flex-direction: column;
+  gap: 5px;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer;
+  padding: var(--space-xs);
+  width: 36px;
+  height: 36px;
+  justify-content: center;
+  align-items: center;
+  margin-left: var(--space-sm);
+  z-index: 1001;
+  position: relative;
+}
+
+.header__nav-toggle span {
+  display: block !important;
+  width: 24px;
+  height: 3px;
+  background-color: var(--header-text) !important;
+  transition: all var(--transition-fast);
+  border-radius: 2px;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative;
+}
+
+.header__nav-toggle:hover span {
+  background-color: var(--header-text);
+  opacity: 0.8;
+}
+
+.header__nav-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.header__nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.header__nav-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.header__nav-link {
+  font-size: var(--text-sm);
+  color: var(--header-text);
+  text-decoration: none;
+  transition: background-color var(--transition-fast), opacity var(--transition-fast);
+  padding: var(--space-sm);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.header__nav-link:hover,
+.header__nav-link:focus {
+  background-color: rgba(255, 95, 27, 0.1);
+  opacity: 1;
+}
+
+.header__nav-link--active {
+  color: var(--header-text);
+  font-weight: var(--font-weight-medium);
+  opacity: 1;
+}
+
+/* Main Content */
+.main {
+  min-height: calc(100vh - var(--header-height) - 4px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero Section - Removed */
+
+/* Section */
+.section {
+  padding: var(--space-md) 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.section:first-of-type {
+  padding-top: var(--space-md);
+}
+
+.section .container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.section .grid {
+  flex: 1;
+  display: grid;
+  align-content: start;
+}
+
+/* Don't apply to all-tiles grid */
+.section .grid.grid--all-tiles {
+  align-content: stretch;
+}
+
+/* Grid System */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--grid-gap);
+  height: 100%;
+  grid-auto-rows: 1fr;
+}
+
+/* Grid for all 9 tiles - 3x3 layout - STRICT 3x3 at all sizes */
+.grid--all-tiles {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-template-rows: repeat(3, minmax(0, 1fr)) !important;
+  grid-auto-flow: row !important;
+  grid-auto-columns: unset !important;
+  grid-auto-rows: unset !important;
+  gap: var(--grid-gap) !important;
+  width: 100% !important;
+  height: calc(88vh - var(--header-height) - 2px) !important;
+  min-height: calc(88vh - var(--header-height) - 2px) !important;
+  max-width: 100vw !important;
+  box-sizing: border-box;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.section--all-tiles {
+  padding: 0;
+  margin-top: -2px;
+  min-height: calc(100vh - var(--header-height) - 4px);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+
+.section--all-tiles .container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 var(--space-sm);
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.section--all-tiles .grid {
+  flex: 1;
+  height: 100%;
+  width: 100%;
+}
+
+/* Force 3x3 layout on ALL screen sizes - override any other grid rules */
+/* Base rule already sets 3x3, these media queries just ensure it stays 3x3 */
+@media (max-width: 767px) {
+  .grid--all-tiles {
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-rows: repeat(3, 1fr) !important;
+    gap: calc(var(--grid-gap) * 0.75);
+  }
+  
+  .section--all-tiles .container {
+    padding: 0 var(--space-xs);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .grid--all-tiles {
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-rows: repeat(3, 1fr) !important;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .grid--all-tiles {
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-rows: repeat(3, 1fr) !important;
+    height: calc(100vh - var(--header-height) - 4px);
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .grid--all-tiles {
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-rows: repeat(3, 1fr) !important;
+  }
+}
+
+@media (min-width: 1440px) {
+  .grid--all-tiles {
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-rows: repeat(3, 1fr) !important;
+  }
+}
+
+/* Tablet: 2 columns - ONLY for regular grid, not all-tiles */
+@media (min-width: 768px) {
+  .grid:not(.grid--all-tiles) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: 3 columns - ONLY for regular grid, not all-tiles */
+@media (min-width: 1024px) {
+  .grid:not(.grid--all-tiles) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Large Desktop: Keep 3 columns for regular grid */
+@media (min-width: 1280px) {
+  .grid:not(.grid--all-tiles) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--grid-gap);
+  }
+}
+
+@media (min-width: 1440px) {
+  .grid:not(.grid--all-tiles) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Grid with 3 columns max (for Now section) */
+.grid--max-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--grid-gap);
+  height: 100%;
+  grid-auto-rows: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid--max-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid--max-3 {
+    grid-template-columns: repeat(3, 1fr);
+    min-height: calc((100vh - var(--header-height) - var(--space-md) * 2) / 3);
+  }
+}
+
+@media (min-width: 1440px) {
+  .grid--max-3 {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid var(--line);
+  padding: var(--space-md) 0;
+  margin-top: var(--space-lg);
+}
+
+.footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.footer__copyright {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  flex: 1;
+  text-align: center;
+}
+
+.footer__linkedin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  width: 24px;
+  height: 24px;
+}
+
+.footer__linkedin:hover,
+.footer__linkedin:focus {
+  color: var(--accent);
+}
+
+.footer__linkedin svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Page Content */
+.page-content {
+  padding: 0;
+}
+
+.page-content__inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Reduce section padding for pages with page-content (like ideas page) */
+.section:has(.page-content) {
+  padding-top: var(--space-xs);
+  padding-bottom: var(--space-md);
+}
+
+/* Iframe Container (for Notion embed) */
+.iframe-container {
+  width: 100%;
+  margin: var(--space-sm) 0 var(--space-lg) 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--line);
+  position: relative;
+  max-width: 100%;
+}
+
+.iframe-container iframe {
+  width: 100%;
+  height: 90vh;
+  border: none;
+  display: block;
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  .iframe-container {
+    margin: var(--space-xs) 0 var(--space-md) 0;
+    border-radius: 4px;
+  }
+  
+  .iframe-container iframe {
+    height: 90vh;
+  }
+}
+

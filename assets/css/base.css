@@ -1,0 +1,191 @@
+/* ========================================
+   BASE STYLES - CSS Variables, Reset, Typography
+   ======================================== */
+
+/* CSS Custom Properties */
+:root {
+  /* Colors */
+  --bg: #FDFBD4;
+  --accent: #e13661;
+  --header-text: #ff5f1b;
+  --text: #2d4a5a;
+  --muted: #6b8a99;
+  --line: rgba(45, 74, 90, 0.12);
+  --white: #ffffff;
+  --tile-bg: linear-gradient(135deg, rgba(253, 251, 212, 0.6) 0%, rgba(253, 251, 212, 0.4) 100%);
+  --shadow: rgba(45, 74, 90, 0.08);
+  --shadow-hover: rgba(45, 74, 90, 0.15);
+  
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Spacing */
+  --space-xs: clamp(0.5rem, 0.5vw + 0.25rem, 0.75rem);
+  --space-sm: clamp(0.75rem, 1vw + 0.5rem, 1.25rem);
+  --space-md: clamp(1rem, 2vw + 0.5rem, 2rem);
+  --space-lg: clamp(2.5rem, 3vw + 1.5rem, 4rem);
+  --space-xl: clamp(4rem, 5vw + 2rem, 6rem);
+  
+  /* Typography Scale */
+  --text-xs: clamp(0.75rem, 0.5vw + 0.625rem, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.75vw + 0.625rem, 1rem);
+  --text-base: clamp(1rem, 1vw + 0.75rem, 1.125rem);
+  --text-lg: clamp(1.125rem, 1.25vw + 0.875rem, 1.5rem);
+  --text-xl: clamp(1.5rem, 2vw + 1.125rem, 2.25rem);
+  --text-2xl: clamp(2rem, 3vw + 1.25rem, 3.5rem);
+  
+  /* Line Heights */
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+  
+  /* Transitions */
+  --transition-fast: 200ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 300ms ease;
+  
+  /* Layout */
+  --container-max: 1280px;
+  --header-height: 72px;
+  --grid-gap: clamp(0.75rem, 0.8vw + 0.4rem, 1rem);
+}
+
+/* Inter Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Modern CSS Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--leading-normal);
+  color: var(--text);
+  background-color: var(--bg);
+  min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+h1 {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-bold);
+}
+
+h2 {
+  font-size: var(--text-xl);
+}
+
+h3 {
+  font-size: var(--text-lg);
+}
+
+p {
+  margin-bottom: var(--space-sm);
+  line-height: var(--leading-relaxed);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Lists */
+ul, ol {
+  list-style: none;
+}
+
+/* Remove default button styles */
+button, input, textarea, select {
+  font: inherit;
+}
+
+/* Accessibility */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--accent);
+  color: var(--white);
+}
+
+/* Links use accent color instead of text color on hover */
+a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
